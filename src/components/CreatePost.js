@@ -1,15 +1,18 @@
 import React from 'react';
 
-function CreatePost({ user, setPosts, posts }) {
+function CreatePost({ user, handleAddPost }) {
     const [content, setContent] = React.useState('');
     const [image, setImage] = React.useState(null);
+    const imageInputRef = React.useRef();
 
     function handleSubmit(event) {
         event.preventDefault();
         const post = { content, image, user };
-        const newPosts = [post, ...posts];
-        setPosts(newPosts);
-
+        handleAddPost(post);
+        // const newPosts = [post, ...posts];
+        // setPosts(newPosts);
+        setContent('');
+        imageInputRef.current.value = '';
     }
 
     return <div>
@@ -19,10 +22,12 @@ function CreatePost({ user, setPosts, posts }) {
                 type="text"
                 placeholder="Add Post Content"
                 onChange={event => setContent(event.target.value)}
+                value={content}
             />
             <input 
                 type="file"
                 onChange={event => setImage(event.target.files[0])}
+                ref={imageInputRef}
             />
             <button type="submit">Submit Post</button>
         </form>

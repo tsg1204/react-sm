@@ -1,7 +1,10 @@
 import React from 'react';
+import Post from './Post';
 
-function PostList() {
-    return <div>Post list</div>
+function PostList({ posts }) {
+    return posts.map((post, i) => (
+        <Post key={i} {...post} />
+    ))
 }
 
 export default PostList;
