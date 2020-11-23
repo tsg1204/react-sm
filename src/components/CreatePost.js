@@ -3,7 +3,7 @@ import React from 'react';
 function CreatePost({ user, handleAddPost }) {
     const [content, setContent] = React.useState('');
     const [image, setImage] = React.useState(null);
-    const imageInputRef = React.useRef();
+    const { imageInputRef } = React.useRef();
 
     function handleSubmit(event) {
         event.preventDefault();
